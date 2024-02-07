@@ -10,17 +10,61 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Organization {
+  id Int @id @default(autoincrement())
+  name String @unique
+  website String?
+  phone String
+  createAt  DateTime  @default(now())
+  updateAt  DateTime
+  deleteAt  DateTime?
+
+}
 
 model User{
   id Int @id @default(autoincrement())
+  email     String    @unique
+  f_name    String
+  l_name    String
+  password  String
+  position Position?
+  createAt  DateTime  @default(now())
+  updateAt  DateTime
+  deleteAt  DateTime?
+
 }
 
-model Task{
-   id Int @id @default(autoincrement())
-}
-
-model Areas {
+model Area {
   id Int @id @default(autoincrement())
-  name String
-  code Int
+  name String @unique
+  code String?
+  createAt  DateTime  @default(now())
+  updateAt  DateTime
+  deleteAt  DateTime?
+  employees Employees[]
+}
+
+model Position {
+  id Int @id @default(autoincrement())
+  name String @unique
+  createAt  DateTime  @default(now())
+  updateAt  DateTime
+  deleteAt  DateTime?
+  employees Employees[]
+  user User @relation(fields: [userId], references: [id])
+  userId Int @unique
+}
+
+model Employees {
+  id Int @id @default(autoincrement())
+  email String @unique
+  f_name String
+  l_name String
+  position Position @relation(fields: [positionId], references: [id])
+  positionId Int
+  area Area @relation(fields: [areaId], references: [id])
+  areaId Int
+  createAt  DateTime  @default(now())
+  updateAt  DateTime
+  deleteAt  DateTime?
 }
