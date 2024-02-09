@@ -28,6 +28,7 @@ model User{
   l_name    String
   password  String
   position Position?
+  notes Note[]
   createAt  DateTime  @default(now())
   updateAt  DateTime
   deleteAt  DateTime?
@@ -64,6 +65,19 @@ model Employees {
   positionId Int
   area Area @relation(fields: [areaId], references: [id])
   areaId Int
+  employeeNote Int
+  notes Note @relation(fields: [employeeNote], references: [id])
+  createAt  DateTime  @default(now())
+  updateAt  DateTime
+  deleteAt  DateTime?
+}
+
+model Note {
+  id Int @id @default(autoincrement())
+  note String
+  authorId Int
+  author User @relation(fields: [authorId], references: [id])
+  employees Employees[]
   createAt  DateTime  @default(now())
   updateAt  DateTime
   deleteAt  DateTime?
