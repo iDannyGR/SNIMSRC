@@ -5,13 +5,13 @@ services:
     image: postgres
     restart: always
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
       - DATABASE_HOST=127.0.0.1
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=notes-db 
     volumes:
-      - postgres_data:/var/lib/postgresql/notesdb
+      - postgres_data:/var/lib/postgresql/data
 volumes:
   postgres_data:

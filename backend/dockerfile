@@ -1,0 +1,32 @@
+FROM node:latest as builder
+
+WORKDIR /notesdb-backend
+
+COPY package*.json ./
+
+RUN npm install -g npm@latest
+
+COPY . .
+
+ENV NODE_ENV=${NODE_ENV} \
+    PORT=3001 \
+    DATABASE_URL=${DATABASE_URL} \
+    POSTGRES_USER=${POSTGRES_USER} \
+    POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
+    POSTGRES_DB=${POSTGRES_DB} \
+    POSTGRES_HOST=${POSTGRES_HOST} \
+    POSTGRES_PORT=${POSTGRES_PORT}    
+
+RUN npm install -g npm@latest
+
+COPY --chown=node:node package*.json ./
+
+COPY --chown=node:node --from=builder notesdb-backend/dist/ ./dist
+
+RUN npm install --omit dev
+
+USER node
+
+EXPOSE 3001
+
+CMD ["npm", "run", "start"]
