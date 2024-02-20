@@ -17,13 +17,7 @@ ENV NODE_ENV=${NODE_ENV} \
     POSTGRES_HOST=${POSTGRES_HOST} \
     POSTGRES_PORT=${POSTGRES_PORT}    
 
-RUN npm install -g npm@latest
-
-COPY --chown=node:node package*.json ./
-
-COPY --chown=node:node --from=builder notesdb-backend/dist/ ./dist
-
-RUN npm install --omit dev
+RUN npm install --only=prod
 
 USER node
 
