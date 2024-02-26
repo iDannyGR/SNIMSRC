@@ -10,6 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Roles  {
+  Admin
+  Creator
+} 
+
 model Organization {
   id        Int @id @default(autoincrement())
   name      String @unique
@@ -28,6 +33,7 @@ model User{
   l_name    String
   password  String
   position  Position?
+  role      Roles
   notes     Note[]
   createAt  DateTime  @default(now())
   updateAt  DateTime
