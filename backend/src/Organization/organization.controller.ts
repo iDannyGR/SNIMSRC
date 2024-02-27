@@ -13,7 +13,7 @@ export class orgnizationController{
    }
 
    @Post()
-   async createOrganization(@Body data:Organization){
+   async createOrganization(@Body() data:Organization){
         this.organizationService.createOrganization(data);
    }
    
