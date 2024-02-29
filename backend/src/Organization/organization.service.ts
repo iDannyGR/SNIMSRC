@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
-import { Organization } from "@prisma/client";
-import { PrismaService } from "src/prisma/prisma.service";
+import { Injectable } from '@nestjs/common';
+import { Organization } from '@prisma/client';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class OrganizationService {
@@ -23,7 +23,7 @@ export class OrganizationService {
 
   async deleteOrganization(id: number): Promise<Organization> {
     return this.prisma.organization.delete({
-      where: { id }
+      where: { id },
     });
   }
 }
