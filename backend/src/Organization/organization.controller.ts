@@ -8,21 +8,21 @@ export class orgnizationController {
 
   @Get()
   async getOrganization() {
-    await this.organizationService.getOrganization();
+    return await  this.organizationService.getOrganization();
   }
 
   @Post()
   async createOrganization(@Body() data: Organization) {
-    await this.organizationService.createOrganization(data);
+   return await this.organizationService.createOrganization(data);
   }
 
   @Delete(':id')
   async deleteOrganization(@Param('id') id: string) {
-    await this.organizationService.deleteOrganization(Number(id));
+   return await this.organizationService.deleteOrganization(Number(id));
   }
 
   @Put(':id')
   async updateOrganization(@Param('id') id: string, @Body() data: Organization) {
-    await this.organizationService.updateOrganization(Number(id), data);
+   return await this.organizationService.updateOrganization(Number(id), data);
   }
 }

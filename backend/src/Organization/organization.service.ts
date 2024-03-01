@@ -7,7 +7,7 @@ export class OrganizationService {
   constructor(private prisma: PrismaService) {}
 
   async getOrganization(): Promise<Organization[]> {
-    return this.prisma.organization.findMany();
+    return await this.prisma.organization.findMany();
   }
 
   async createOrganization(data: Organization): Promise<Organization> {
