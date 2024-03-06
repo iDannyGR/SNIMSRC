@@ -13,4 +13,7 @@ export class organizationDto {
   @IsNotEmpty({ message: 'write a phone number' })
   @Length(9)
   phone: string;
+  createAt?:Date;
+  updateAt:Date
+  deleteAt?:Date
 }

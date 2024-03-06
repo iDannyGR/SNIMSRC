@@ -1,6 +1,7 @@
 import { Controller, Get, Put, Post, Delete, Body, Param, NotFoundException } from '@nestjs/common';
 import { OrganizationService } from './organization.service';
 import { Organization } from '@prisma/client';
+import { organizationDto } from './dto/organization.dto';
 
 @Controller('organization')
 export class orgnizationController {
@@ -14,7 +15,7 @@ export class orgnizationController {
   }
 
   @Post()
-  async createOrganization(@Body() data: Organization) {
+  async createOrganization(@Body() data: organizationDto) {
     return await this.organizationService.createOrganization(data);
   }
 
