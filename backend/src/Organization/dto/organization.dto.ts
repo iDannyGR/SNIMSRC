@@ -1,6 +1,7 @@
-import { IsFQDN, IsNotEmpty, Length } from "class-validator";
+import { PartialType } from '@nestjs/mapped-types';
+import { IsFQDN, IsNotEmpty, Length } from 'class-validator';
 
-export class organizationDto {
+export class CreateOrganizationDto {
   @IsNotEmpty({ message: 'must write your Organization name' })
   @Length(3, 255)
   name: string;
@@ -13,7 +14,6 @@ export class organizationDto {
   @IsNotEmpty({ message: 'write a phone number' })
   @Length(9)
   phone: string;
-  createAt?:Date;
-  updateAt:Date
-  deleteAt?:Date
 }
+
+export class UpdateOrganization extends PartialType(CreateOrganizationDto) {}

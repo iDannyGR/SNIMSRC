@@ -21,8 +21,8 @@ model Organization {
   website   String?
   phone     String
   createAt  DateTime  @default(now())
-  updateAt  DateTime
-  deleteAt  DateTime?
+  updateAt  DateTime  @updatedAt
+  deleteAt  DateTime? 
 
 }
 
@@ -36,7 +36,7 @@ model User{
   role      Roles
   notes     Note[]
   createAt  DateTime  @default(now())
-  updateAt  DateTime
+  updateAt  DateTime   @updatedAt
   deleteAt  DateTime?
 
 }
@@ -46,7 +46,7 @@ model Area {
   name      String @unique
   code      String?
   createAt  DateTime  @default(now())
-  updateAt  DateTime
+  updateAt  DateTime   @updatedAt
   deleteAt  DateTime?
   employees Employees[]
 }
@@ -55,7 +55,7 @@ model Position {
   id        Int @id @default(autoincrement())
   name      String @unique
   createAt  DateTime  @default(now())
-  updateAt  DateTime
+  updateAt  DateTime   @updatedAt
   deleteAt  DateTime?
   employees Employees[]
   user      User @relation(fields: [userId], references: [id])
@@ -74,7 +74,7 @@ model Employees {
   notes     Note[]
   notesEmployees notesEmployees[] 
   createAt  DateTime  @default(now())
-  updateAt  DateTime
+  updateAt  DateTime   @updatedAt
   deleteAt  DateTime?
 }
 
@@ -86,7 +86,7 @@ model Note {
   employees Employees[]
   noteEmployees notesEmployees[]
   createAt  DateTime  @default(now())
-  updateAt  DateTime
+  updateAt  DateTime   @updatedAt
   deleteAt  DateTime?
 }
 

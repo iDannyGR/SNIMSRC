@@ -1,27 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { organizationDto } from './dto/organization.dto';
+import { UpdateOrganization, CreateOrganizationDto } from './dto/organization.dto';
 
 @Injectable()
 export class OrganizationService {
   constructor(private prisma: PrismaService) {}
 
-  async getOrganization(): Promise<organizationDto[]> {
+  async getOrganization(): Promise<CreateOrganizationDto[]> {
     return await this.prisma.organization.findMany();
   }
 
-  async createOrganization(data: organizationDto): Promise<organizationDto> {
+  async createOrganization(data: CreateOrganizationDto): Promise<CreateOrganizationDto> {
     return this.prisma.organization.create({ data });
   }
 
-  async updateOrganization(id: number, data: organizationDto): Promise<organizationDto> {
+  async updateOrganization(id: number, data: UpdateOrganization): Promise<CreateOrganizationDto> {
     return this.prisma.organization.update({
       where: { id },
       data,
     });
   }
 
-  async deleteOrganization(id: number): Promise<organizationDto> {
+  async deleteOrganization(id: number): Promise<CreateOrganizationDto> {
     return this.prisma.organization.delete({
       where: { id },
     });
