@@ -29,7 +29,6 @@ export class orgnizationController {
 
   @Put(':id')
   async updateOrganization(@Param('id') id: string, @Body() data: UpdateOrganization) {
-    console.log(data instanceof CreateOrganizationDto);
     try {
       return await this.organizationService.updateOrganization(Number(id), data);
     } catch (error) {
