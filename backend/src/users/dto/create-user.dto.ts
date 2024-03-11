@@ -1,13 +1,27 @@
-import { Position, Roles, Note } from "@prisma/client";
-import { IsNotEmpty } from "class-validator";
+import { Transform } from "class-transformer";
+import { IsNotEmpty, IsString, Length } from "class-validator";
 
 export class CreateUserDto {
-    @IsNotEmpty({message:"write a email"})
-    email:String; 
-  f_name:String;
-  l_name:String;
-  password:String;
-  position?:Position;
-  role:Roles;
-  notes:Note[];
+  @IsString()
+  @IsNotEmpty({ message: 'write a email' })
+  email: String;
+
+  @IsString()
+  @IsNotEmpty({ message: 'write a names' })
+  f_name: String;
+
+  @IsString()
+  @IsNotEmpty({ message: 'write last name' })
+  l_name: String;
+
+  @IsString()
+  @IsNotEmpty()
+  @Length(8, 32)
+  password: String;
+
+  position?: String;
+
+  @IsNotEmpty()
+  @IsString()
+  role: String;
 }
