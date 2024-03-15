@@ -1,4 +1,3 @@
-import { Transform } from "class-transformer";
 import { IsNotEmpty, IsString, Length } from "class-validator";
 
 export class CreateUserDto {
@@ -19,6 +18,7 @@ export class CreateUserDto {
   @Length(8, 32)
   password: String;
 
+  @IsString()
   position?: String;
 
   @IsNotEmpty()

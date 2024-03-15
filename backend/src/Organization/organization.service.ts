@@ -11,18 +11,18 @@ export class OrganizationService {
   }
 
   async createOrganization(data: CreateOrganizationDto): Promise<CreateOrganizationDto> {
-    return this.prisma.organization.create({ data });
+    return await this.prisma.organization.create({ data });
   }
 
   async updateOrganization(id: number, data: UpdateOrganization): Promise<CreateOrganizationDto> {
-    return this.prisma.organization.update({
+    return await this.prisma.organization.update({
       where: { id },
       data,
     });
   }
 
   async deleteOrganization(id: number): Promise<CreateOrganizationDto> {
-    return this.prisma.organization.delete({
+    return await this.prisma.organization.delete({
       where: { id },
     });
   }
