@@ -1,27 +1,28 @@
+import { $Enums } from "@prisma/client";
 import { IsNotEmpty, IsString, Length } from "class-validator";
 
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty({ message: 'write a email' })
-  email: String;
+  email: string;
 
   @IsString()
   @IsNotEmpty({ message: 'write a names' })
-  f_name: String;
+  f_name: string;
 
   @IsString()
   @IsNotEmpty({ message: 'write last name' })
-  l_name: String;
+  l_name: string;
 
   @IsString()
   @IsNotEmpty()
   @Length(8, 32)
-  password: String;
+  password: string;
 
   @IsString()
-  position?: String;
+  position?: number;
 
   @IsNotEmpty()
   @IsString()
-  role: String;
+  role: $Enums.Roles;
 }

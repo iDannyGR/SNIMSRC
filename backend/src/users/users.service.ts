@@ -7,7 +7,17 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   async create(data : CreateUserDto): Promise<CreateUserDto> {
-    return await this.prisma.user.create({ data });
+    const { email, f_name, l_name, password, role, position } = data;
+    return await this.prisma.user.create({
+      data: {
+        email,
+        f_name,
+        l_name,
+        password,
+        position: { connect: { id: position } },
+        role,
+      },
+    });
   }
 
   findAll() {
