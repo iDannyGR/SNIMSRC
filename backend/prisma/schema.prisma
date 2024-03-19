@@ -29,8 +29,8 @@ model Organization {
 model User{
   id        Int @id @default(autoincrement())
   email     String    @unique
-  f_name    String
-  l_name    String
+  firstName String
+  lastName  String
   password  String
   position  Position?
   role      Roles
@@ -65,8 +65,8 @@ model Position {
 model Employees {
   id        Int @id @default(autoincrement())
   email     String @unique
-  f_name    String
-  l_name    String
+  firstName String
+  lastName  String
   position  Position @relation(fields: [positionId], references: [id])
   positionId Int
   area       Area @relation(fields: [areaId], references: [id])

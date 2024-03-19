@@ -1,5 +1,5 @@
-import { $Enums } from "@prisma/client";
-import { IsNotEmpty, IsString, Length } from "class-validator";
+import { $Enums } from '@prisma/client';
+import { IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
@@ -8,11 +8,11 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty({ message: 'write a names' })
-  f_name: string;
+  firstName: string;
 
   @IsString()
   @IsNotEmpty({ message: 'write last name' })
-  l_name: string;
+  lastName: string;
 
   @IsString()
   @IsNotEmpty()
@@ -20,7 +20,8 @@ export class CreateUserDto {
   password: string;
 
   @IsString()
-  position?: number;
+  @IsOptional()
+  position?: { connect: { id: number } };
 
   @IsNotEmpty()
   @IsString()
