@@ -20,19 +20,19 @@ export class UsersService {
     });
   }
 
-  findAll() {
-    return `This action returns all users`;
+ async findAll() : Promise<CreateUserDto[]> {
+    return await this.prisma.user.findMany()
   }
 
-  findOne(id: number) {
+ async findOne(id: number) {
     return `This action returns a #${id} user`;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+ async update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+ async remove(id: number) :Primise<> {
+    return await this.prisma.user.findUnique(id)
   }
 }

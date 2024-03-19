@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "Roles" AS ENUM ('Admin', 'Creator');
+
 -- CreateTable
 CREATE TABLE "Organization" (
     "id" SERIAL NOT NULL,
@@ -18,6 +21,7 @@ CREATE TABLE "User" (
     "f_name" TEXT NOT NULL,
     "l_name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "role" "Roles" NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(3) NOT NULL,
     "deleteAt" TIMESTAMP(3),
