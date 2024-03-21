@@ -18,8 +18,8 @@ CREATE TABLE "Organization" (
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
-    "f_name" TEXT NOT NULL,
-    "l_name" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "role" "Roles" NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -57,8 +57,8 @@ CREATE TABLE "Position" (
 CREATE TABLE "Employees" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
-    "f_name" TEXT NOT NULL,
-    "l_name" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
     "positionId" INTEGER NOT NULL,
     "areaId" INTEGER NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

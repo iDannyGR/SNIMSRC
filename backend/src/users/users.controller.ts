@@ -8,41 +8,30 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
+  async createUser(@Body() createUserDto: CreateUserDto) {
     return await this.usersService.create(createUserDto);
   }
 
   @Get()
-  async findAll() {
+  async findAllUser() {
     const data = await this.usersService.findAll();
     if (!data) throw new NotFoundException('no data');
     return data;
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    try {
-      return this.usersService.findOne(Number(id));
-    } catch (error) {
-      throw new NotFoundException('wrong id data');
-    }
+ async findOneUser(@Param('id') id: string) {
+      return await this.usersService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    try {
-      return this.usersService.update(Number(id), updateUserDto);
-    } catch (error) {
-      throw new NotFoundException('wrong id data');
-    }
+  async updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+      return await this.usersService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    try {
-      return this.usersService.remove(Number(id));
-    } catch (error) {
-      throw new NotFoundException('wrong id data');
-    }
+  async removeUser(@Param('id') id: string) {
+      return await this.usersService.remove(+id);
+
   }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Put, Post, Delete, Body, Param, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Put, Post, Delete, Body, Param } from '@nestjs/common';
 import { OrganizationService } from './organization.service';
 import { UpdateOrganization, CreateOrganizationDto } from './dto/organization.dto';
 
@@ -8,9 +8,7 @@ export class orgnizationController {
 
   @Get()
   async getOrganization() {
-    const dataFound = await this.organizationService.getOrganization();
-    if (!dataFound) throw new NotFoundException('data not found');
-    return dataFound;
+   return await this.organizationService.getOrganization();
   }
 
   @Post()
@@ -20,19 +18,11 @@ export class orgnizationController {
 
   @Delete(':id')
   async deleteOrganization(@Param('id') id: string) {
-    try {
       return await this.organizationService.deleteOrganization(Number(id));
-    } catch (error) {
-      throw new NotFoundException('wrong id data');
-    }
   }
 
   @Put(':id')
   async updateOrganization(@Param('id') id: string, @Body() data: UpdateOrganization) {
-    try {
       return await this.organizationService.updateOrganization(Number(id), data);
-    } catch (error) {
-      throw new NotFoundException('wrong id data');
-    }
   }
 }

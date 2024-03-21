@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateOrganization, CreateOrganizationDto } from './dto/organization.dto';
 
@@ -7,7 +7,11 @@ export class OrganizationService {
   constructor(private prisma: PrismaService) {}
 
   async getOrganization(): Promise<CreateOrganizationDto[]> {
-    return await this.prisma.organization.findMany();
+
+    const data = await this.prisma.organization.findMany();
+    if(!data) throw new NotFoundException("wrong data");
+    return data
+
   }
 
   async createOrganization(data: CreateOrganizationDto): Promise<CreateOrganizationDto> {
@@ -15,15 +19,25 @@ export class OrganizationService {
   }
 
   async updateOrganization(id: number, data: UpdateOrganization): Promise<CreateOrganizationDto> {
-    return await this.prisma.organization.update({
-      where: { id },
-      data,
-    });
+
+   try {
+     return await this.prisma.organization.update({
+       where: { id },
+       data,
+     });
+   } catch (error) {
+      throw new NotFoundException("wrong id data")
+   }
+
   }
 
   async deleteOrganization(id: number): Promise<CreateOrganizationDto> {
-    return await this.prisma.organization.delete({
-      where: { id },
-    });
+    try {
+      return await this.prisma.organization.delete({
+        where: { id },
+      });
+    } catch (error) {
+        throw new NotFoundException('wrong id data');
+    }
   }
 }
