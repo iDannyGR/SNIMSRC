@@ -7,11 +7,9 @@ export class OrganizationService {
   constructor(private prisma: PrismaService) {}
 
   async getOrganization(): Promise<CreateOrganizationDto[]> {
-
     const data = await this.prisma.organization.findMany();
-    if(!data) throw new NotFoundException("wrong data");
-    return data
-
+    if (!data) throw new NotFoundException('wrong data');
+    return data;
   }
 
   async createOrganization(data: CreateOrganizationDto): Promise<CreateOrganizationDto> {
@@ -19,16 +17,14 @@ export class OrganizationService {
   }
 
   async updateOrganization(id: number, data: UpdateOrganization): Promise<CreateOrganizationDto> {
-
-   try {
-     return await this.prisma.organization.update({
-       where: { id },
-       data,
-     });
-   } catch (error) {
-      throw new NotFoundException("wrong id data")
-   }
-
+    try {
+      return await this.prisma.organization.update({
+        where: { id },
+        data,
+      });
+    } catch (error) {
+      throw new NotFoundException('wrong id data');
+    }
   }
 
   async deleteOrganization(id: number): Promise<CreateOrganizationDto> {
@@ -37,7 +33,7 @@ export class OrganizationService {
         where: { id },
       });
     } catch (error) {
-        throw new NotFoundException('wrong id data');
+      throw new NotFoundException('wrong id data');
     }
   }
 }

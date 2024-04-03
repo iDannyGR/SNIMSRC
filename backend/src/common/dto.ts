@@ -1,4 +1,4 @@
 export interface systemResponse<T> {
-    msg:string,
-    data:T
+  msg: string;
+  data: T;
 }
