@@ -8,7 +8,7 @@ export class OrganizationService {
 
   async getOrganization(): Promise<CreateOrganizationDto[]> {
     const data = await this.prisma.organization.findMany();
-    if (!data) throw new NotFoundException('wrong data');
+    if (!data && data[0].deleteAt) throw new NotFoundException('wrong data');
     return data;
   }
 

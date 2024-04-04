@@ -9,7 +9,7 @@ export class AreaController {
 
   @Post()
   async create(@Body() createAreaDto: CreateAreaDto) {
-     return await this.areaService.create(createAreaDto);
+    return await this.areaService.create(createAreaDto);
   }
 
   @Get()
@@ -28,7 +28,7 @@ export class AreaController {
   }
 
   @Delete(':id')
- async removeArea(@Param('id') id: string) {
-     return await this.areaService.remove(+id);
+  async removeArea(@Param('id') id: string) {
+    return await this.areaService.remove(+id);
   }
 }

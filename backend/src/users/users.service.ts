@@ -48,8 +48,9 @@ export class UsersService {
 
   async remove(id: number) {
     try {
-      return await this.prisma.user.delete({
+      return await this.prisma.user.update({
         where: { id },
+        data: { deleteAt: new Date() },
       });
     } catch (error) {
       throw new NotFoundException(`wrong id: ${id}`);

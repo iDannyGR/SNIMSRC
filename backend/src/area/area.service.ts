@@ -1,27 +1,40 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateAreaDto, UpdateAreaDto } from 'src/area/dto';
 @Injectable()
 export class AreaService {
-  constructor(private prisma:PrismaService){}
+  constructor(private prisma: PrismaService) {}
 
- async create(createAreaDto: CreateAreaDto) {
-    return 'This action adds a new area';
+  async create(data: CreateAreaDto): Promise<CreateAreaDto> {
+    return this.prisma.area.create({ data });
   }
 
-  async findAll() {
-    return `This action returns all area`;
+  async findAll(): Promise<CreateAreaDto[]> {
+    return this.prisma.area.findMany();
   }
 
-  async findOne(id: number) {
-    return `This action returns a #${id} area`;
+  async findOne(id: number): Promise<CreateAreaDto> {
+    const data = await this.prisma.area.findUnique({
+      where: { id },
+    });
+    if (!data) throw new NotFoundException('wrong id data');
+    return data;
   }
 
   async update(id: number, updateAreaDto: UpdateAreaDto) {
-    return `This action updates a #${id} area`;
+    try {
+      return await this.prisma.area.update({
+        where: { id },
+        data: updateAreaDto,
+      });
+    } catch (error) {
+      throw new NotFoundException(`wrong ${id} data`);
+    }
   }
 
   async remove(id: number) {
-    return `This action removes a #${id} area`;
+    return await this.prisma.area.delete({
+      where: { id },
+    });
   }
 }

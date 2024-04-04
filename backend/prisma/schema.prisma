@@ -46,7 +46,7 @@ model Area {
   code      String?
   createAt  DateTime  @default(now())
   updateAt  DateTime   @updatedAt
-  deleteAt  DateTime?
+  deleteAt  DateTime? 
   employees Employees[]
 }
 
