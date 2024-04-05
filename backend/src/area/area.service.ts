@@ -10,7 +10,7 @@ export class AreaService {
   }
 
   async findAll(): Promise<CreateAreaDto[]> {
-    return this.prisma.area.findMany();
+    return this.prisma.area.findMany({where:{deleteAt:null}});
   }
 
   async findOne(id: number): Promise<CreateAreaDto> {

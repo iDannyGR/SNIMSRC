@@ -96,3 +96,9 @@ model notesEmployees {
   employeeId Int
   @@id([noteId, employeeId])
 }
+
+@filtering({
+  deleteAt:{
+    not:null
+  }
+})
