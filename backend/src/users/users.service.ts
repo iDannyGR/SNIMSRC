@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto, UpdateUserDto } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { User } from '@prisma/client';
+import { createCipheriv, randomBytes, scrypt } from 'crypto';
 
 @Injectable()
 export class UsersService {
@@ -9,6 +10,12 @@ export class UsersService {
 
   async create(data: CreateUserDto): Promise<CreateUserDto> {
     const { email, firstName, lastName, password, role, position } = data;
+    const bytes =randomBytes(16);
+    const secret = 'abcdef';
+    const algorithm = '';
+
+
+    
     return await this.prisma.user.create({
       data: {
         email,
