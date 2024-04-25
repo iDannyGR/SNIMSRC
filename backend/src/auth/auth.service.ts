@@ -1,7 +1,7 @@
-import { ConsoleLogger, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { RegisterDto, UpdateUserDto, GetUserDto } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { encrptPsw } from 'src/utils/encrypt' ;
+import { encrptPsw } from 'src/utils/encrypt';
 
 @Injectable()
 export class AuthService {
@@ -32,6 +32,7 @@ export class AuthService {
       },
     });
     if (!data) throw new NotFoundException(`wrong id: ${id}`);
+    console.log(data)
     return data;
   }
 

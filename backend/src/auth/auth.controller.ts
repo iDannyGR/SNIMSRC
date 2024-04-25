@@ -13,8 +13,8 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { UpdateUserDto } from './dto/update.dto';
 
-@Controller('users')
-export class UsersController {
+@Controller('auth')
+export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post()
