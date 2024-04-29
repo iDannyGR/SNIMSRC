@@ -29,7 +29,7 @@ export class AuthService {
     const data = await this.prisma.user.findUnique({
       where: {
         id,
-      },
+      }
     });
     if (!data) throw new NotFoundException(`wrong id: ${id}`);
     console.log(data)
