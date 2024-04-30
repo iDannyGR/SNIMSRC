@@ -2,38 +2,44 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { RegisterDto, UpdateUserDto, GetUserDto } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { encrptPsw } from 'src/utils/encrypt';
+import { excludeFromObject, excludeFromList } from 'src/utils/excludeFields';
 
 @Injectable()
 export class AuthService {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: RegisterDto): Promise<RegisterDto> {
-    const { email, firstName, lastName, password, role, position } = data;
+  async create(UserData: RegisterDto): Promise<RegisterDto> {
+    const { password } = UserData;
     return await this.prisma.user.create({
       data: {
-        email,
-        firstName,
-        lastName,
+        ...UserData,
         password: encrptPsw(password),
-        position: position,
-        role,
       },
     });
   }
 
   async findAll(): Promise<GetUserDto[]> {
-    return await this.prisma.user.findMany();
+      try {
+        const data = await this.prisma.user.findMany();
+        if (!data || data.length === 0) {
+          return [];
+        }
+        const filterData = excludeFromList(data, ['password']);
+        return filterData;
+      } catch (error) {
+    throw new Error('No se pudieron recuperar usuarios después de varios intentos');
+        }
   }
 
   async findOne(id: number): Promise<GetUserDto> {
     const data = await this.prisma.user.findUnique({
       where: {
         id,
-      }
+      },
     });
     if (!data) throw new NotFoundException(`wrong id: ${id}`);
-    console.log(data)
-    return data;
+    const filterData = excludeFromObject(data, ['password']);
+    return filterData;
   }
 
   async update(id: number, data: UpdateUserDto): Promise<RegisterDto> {

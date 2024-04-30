@@ -8,5 +8,5 @@ export function excludeFromObject<T, K extends keyof T>(obj: T, keys: K[]): Omit
 
 // Exclude keys from objects in a list
 export function excludeFromList<T, K extends keyof T>(objects: T[], keysToDelete: K[]): Omit<T, K>[] {
-  return objects.map((obj) => excludeFromObject(obj, keysToDelete)) as Omit<T, K>[];
+  return objects.map((obj) => excludeFromObject(obj, keysToDelete));
 }
