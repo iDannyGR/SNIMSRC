@@ -1,12 +1,11 @@
-import { createCipheriv, randomBytes } from 'crypto';
+import { hash, compare } from 'bcrypt';
 
-export function encrptPsw(data: string) {
-  const algoritm: string = 'aes-256-cbc';
-  const key = randomBytes(32);
-  const iv = randomBytes(32);
+const saltRounds = 10; // Número de rondas de sal para bcrypt
 
-  const cipher = createCipheriv(algoritm, key, iv);
-  const paswEncript = Buffer.concat([cipher.update(data), cipher.final()]);
+export async function hashPassword(password: string): Promise<string> {
+  return hash(password, saltRounds);
+}
 
-  return paswEncript.toString('hex');
+export async function comparePassword(password: string, hashedPassword: string): Promise<boolean> {
+  return compare(password, hashedPassword);
 }

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { RegisterDto, UpdateUserDto, GetUserDto } from './dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { encrptPsw } from 'src/utils/encrypt';
+import { hashPassword } from 'src/utils/encrypt';
 import { excludeFromObject, excludeFromList } from 'src/utils/excludeFields';
 
 @Injectable()
@@ -10,11 +10,10 @@ export class AuthService {
 
   async create(UserData: RegisterDto): Promise<GetUserDto> {
     try {
-
       const { password } = UserData;
-      const encryptPassword = encrptPsw(password) ;
+      const encryptPassword = await hashPassword(password);
 
-      const newUser= await this.prisma.user.create({
+      const newUser = await this.prisma.user.create({
         data: {
           ...UserData,
           password: encryptPassword,
@@ -23,11 +22,10 @@ export class AuthService {
 
       const filterData = excludeFromObject(newUser, ['password']);
       return filterData;
-
-    } catch (error) {
-      throw new Error(error);
+    } 
+    catch (error) {
+      throw new Error(`bad data request`);
     }
-    
   }
 
   async findAll(): Promise<GetUserDto[]> {
