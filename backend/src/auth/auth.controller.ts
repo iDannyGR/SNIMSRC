@@ -12,6 +12,7 @@ import {
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { UpdateUserDto } from './dto/update.dto';
+import { LoginDto } from './dto';
 
 @Controller('auth')
 export class AuthController {
@@ -44,5 +45,9 @@ export class AuthController {
   async removeUser(@Param('id', ParseIntPipe) id: number) {
     //pipe to validate and transform data in params
     return await this.authService.remove(id);
+  }
+  @Post('login')
+  async loginUser(@Body() login : LoginDto){
+    return await this.authService.login(login);
   }
 }
