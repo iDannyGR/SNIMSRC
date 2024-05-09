@@ -4,6 +4,7 @@ import { AreaModule } from './area/area.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { validate } from './config/env.validation';
+import { UsersModule } from './users/users.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -11,11 +12,13 @@ import configuration from './config/configuration';
     organizationModule,
     AreaModule,
     AuthModule,
+    UsersModule,
     ConfigModule.forRoot({
       validate,
       isGlobal: true,
       load: [configuration],
     }),
+    UsersModule,
   ],
   controllers: [],
   providers: [],
