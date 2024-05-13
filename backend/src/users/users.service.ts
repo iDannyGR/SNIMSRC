@@ -21,8 +21,9 @@ export class UsersService {
           password: encryptPassword,
         },
       });
-      const filterData = excludeFromObject(newUser, ['password']);
-      return filterData;
+
+      return excludeFromObject(newUser, ['password']);
+     
     } catch (error) {
       throw new Error(`bad data request`);
     }
@@ -54,8 +55,8 @@ export class UsersService {
     try {
       const data = await this.prisma.user.findMany({ where: { deleteAt: null } });
       if (!data || data.length === 0) throw new NotFoundException('error retriving information');
-      const filterData = excludeFromList(data, ['password']);
-      return filterData;
+      return excludeFromList(data, ['password']);
+     ;
     } catch (error) {
       throw new Error('bad data request');
     }
@@ -69,7 +70,6 @@ export class UsersService {
       },
     });
     if (!data) throw new NotFoundException(`wrong id: ${id}`);
-    const filterData = excludeFromObject(data, ['password']);
-    return filterData;
+    return excludeFromObject(data, ['password']);
   }
 }
