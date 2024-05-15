@@ -73,8 +73,7 @@ export class UsersService {
     return excludeFromObject(data, ['password']);
   }
 
-  async findByEmail(email:string):Promise<GetUserDto>{
-      const result =  await this.prisma.user.findUnique({where: {email}})  
-        return excludeFromObject(result, ['password']);
+  async findByEmail(email:string):Promise<RegisterDto>{
+       return await this.prisma.user.findUnique({where: {email}})  
   }
 }

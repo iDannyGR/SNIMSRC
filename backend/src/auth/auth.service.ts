@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private userService: UsersService , private jwtService:JwtService) {}
 
   async singIn({ email, password }: LoginDto) {
-    const user = await this.userService.findOne({ where: { email } });
+    const user = await this.userService.findByEmail(email);
 
     if (!user) throw new UnauthorizedException('invalid email');
 

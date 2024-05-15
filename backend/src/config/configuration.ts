@@ -9,5 +9,5 @@ export default () => ({
     name: process.env.POSTGRES_DB,
     url: process.env.DATABASE_URL,
   },
-  encriptpsw: process.env.ENCRIPT_PASSWORD,
+  secretkey: process.env.MYSECRET_KEY,
 });

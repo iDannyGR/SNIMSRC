@@ -33,7 +33,7 @@ class EnviromentVariables {
   DATABASE_URL: string;
 
   @IsString()
-  ENCRIPT_PASSWORD;
+  MYSECRET_KEY;
 }
 
 export function validate(configuration: Record<string, unknown>) {
