@@ -1,15 +1,15 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { comparePassword } from 'src/utils/encrypt';
 import { LoginDto } from './dto';
 import { JwtService } from '@nestjs/jwt';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService, private jwtService:JwtService) {}
+  constructor(private userService: UsersService , private jwtService:JwtService) {}
 
-  async login({ email, password }: LoginDto) {
-    const user = await this.prisma.user.findUnique({ where: { email } });
+  async singIn({ email, password }: LoginDto) {
+    const user = await this.userService.findOne({ where: { email } });
 
     if (!user) throw new UnauthorizedException('invalid email');
 

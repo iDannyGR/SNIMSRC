@@ -72,4 +72,9 @@ export class UsersService {
     if (!data) throw new NotFoundException(`wrong id: ${id}`);
     return excludeFromObject(data, ['password']);
   }
+
+  async findByEmail(email:string):Promise<GetUserDto>{
+      const result =  await this.prisma.user.findUnique({where: {email}})  
+        return excludeFromObject(result, ['password']);
+  }
 }
