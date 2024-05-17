@@ -4,15 +4,16 @@ import { AuthService } from './auth.service';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { JwtModule } from '@nestjs/jwt';
 
+
 @Module({
   controllers: [AuthController],
   providers: [AuthService],
   imports: [
     PrismaModule,
-    JwtModule.register({
+    JwtModule.registerAsync({
       global: true,
-      secret: secretkey,
-      signOptions: { expiresIn: '60s' },
+      useFactory: async ()=> {
+      }
     }),
   ],
 })
