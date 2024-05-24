@@ -23,7 +23,6 @@ export class UsersService {
       });
 
       return excludeFromObject(newUser, ['password']);
-     
     } catch (error) {
       throw new Error(`bad data request`);
     }
@@ -56,7 +55,6 @@ export class UsersService {
       const data = await this.prisma.user.findMany({ where: { deleteAt: null } });
       if (!data || data.length === 0) throw new NotFoundException('error retriving information');
       return excludeFromList(data, ['password']);
-     ;
     } catch (error) {
       throw new Error('bad data request');
     }
@@ -73,7 +71,7 @@ export class UsersService {
     return excludeFromObject(data, ['password']);
   }
 
-  async findByEmail(email:string):Promise<RegisterDto>{
-       return await this.prisma.user.findUnique({where: {email}})  
+  async findByEmail(email: string): Promise<RegisterDto> {
+    return await this.prisma.user.findUnique({ where: { email } });
   }
 }

@@ -6,7 +6,10 @@ import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UsersService , private jwtService:JwtService) {}
+  constructor(
+    private userService: UsersService,
+    private jwtService: JwtService,
+  ) {}
 
   async singIn({ email, password }: LoginDto) {
     const user = await this.userService.findByEmail(email);
@@ -16,6 +19,10 @@ export class AuthService {
     const isPasswordValid = await comparePassword(password, user.password);
     if (!isPasswordValid) throw new UnauthorizedException('invalid password');
 
-    return user;
+    const payload = { email: user.email };
+    const token = await this.jwtService.signAsync(payload);
+    return {
+      token, email
+    };
   }
 }
