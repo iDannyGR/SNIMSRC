@@ -18,7 +18,6 @@ import configuration from './config/configuration';
       isGlobal: true,
       load: [configuration],
     }),
-    UsersModule,
   ],
   controllers: [],
   providers: [],
