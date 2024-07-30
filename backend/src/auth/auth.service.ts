@@ -4,6 +4,7 @@ import { LoginDto } from './dto';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -13,7 +14,6 @@ export class AuthService {
 
   async singIn({ email, password }: LoginDto) {
     const user = await this.userService.findByEmail(email);
-
     if (!user) throw new UnauthorizedException('invalid email');
 
     const isPasswordValid = await comparePassword(password, user.password);
