@@ -1,7 +1,6 @@
 import {
   Controller,
   Get,
-  Post,
   Body,
   Patch,
   Param,
@@ -10,17 +9,13 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { RegisterDto } from './dto/register.dto';
 import { UpdateUserDto } from './dto/update.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
-  @Post()
-  async createUser(@Body() createUserDto: RegisterDto) {
-    return await this.userService.create(createUserDto);
-  }
+
 
   @Get()
   async findAllUser() {

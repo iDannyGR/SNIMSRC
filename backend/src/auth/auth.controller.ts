@@ -8,6 +8,6 @@ export class AuthController {
 
   @Post('login')
   async loginUser(@Body() login: LoginDto) {
-    return await this.authService.singIn(login);
+    return await this.authService.login(login);
   }
 }

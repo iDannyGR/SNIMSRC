@@ -1,32 +1,11 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { RegisterDto, UpdateUserDto, GetUserDto } from '../users/dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { UpdateUserDto } from '../users/dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { hashPassword } from 'src/utils/encrypt';
 import { excludeFromObject, excludeFromList } from 'src/utils/excludeFields';
 
 @Injectable()
 export class UsersService {
   constructor(private prisma: PrismaService) {}
-
-  async create(UserData: RegisterDto): Promise<GetUserDto> {
-    const { password, email } = UserData;
-    const user = await this.prisma.user.findUnique({ where: { email } });
-    if (user) throw new BadRequestException('User alredy Exist');
-
-    try {
-      const encryptPassword = await hashPassword(password);
-      const newUser = await this.prisma.user.create({
-        data: {
-          ...UserData,
-          password: encryptPassword,
-        },
-      });
-
-      return excludeFromObject(newUser, ['password']);
-    } catch (error) {
-      throw new Error(`bad data request`);
-    }
-  }
 
   async update(id: number, data: UpdateUserDto): Promise<RegisterDto> {
     try {
