@@ -1,2 +1,2 @@
 export { LoginDto } from './login.dto';
-export { RegisterDto } from '../../users/dto/register.dto';
+export { RegisterDto } from '../../shared/dto/register.dto';
