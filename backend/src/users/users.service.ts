@@ -10,18 +10,17 @@ export class UsersService {
 
   async update(id: number, userData: UpdateUserDto): Promise<RegisterDto> {
     try {
-      const { password, ...restOfUserData } = userData;
-      const dataToUpdate = {...restOfUserData}
-      if(password){
+      const { password } = userData;
+      const dataToUpdate = { ...userData };
+
+      if (password) {
         const encryptPassword = await hashPassword(password);
-        dataToUpdate.password = encryptPassword
+        dataToUpdate.password = encryptPassword;
       }
+
       return await this.prisma.user.update({
         where: { id },
-        data: {
-          ...userData,
-          password: encryptPassword,
-        },
+        data: dataToUpdate,
       });
     } catch (error) {
       throw new NotFoundException(`wrong id: ${id}`);
