@@ -12,7 +12,7 @@ export class AuthController {
   }
 
   @Post('signup')
-  async createUser(@Body() data:RegisterDto){
+  async createUser(@Body() data: RegisterDto) {
     return await this.authService.signup(data);
   }
 }
