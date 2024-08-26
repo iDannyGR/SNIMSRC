@@ -6,9 +6,11 @@ import { ConfigModule } from '@nestjs/config';
 import { validate } from './config/env.validation';
 import { UsersModule } from './users/users.module';
 import configuration from './config/configuration';
+import { PrismaModule } from './services/prisma/prisma.module';
 
 @Module({
   imports: [
+    PrismaModule,
     organizationModule,
     AreaModule,
     AuthModule,

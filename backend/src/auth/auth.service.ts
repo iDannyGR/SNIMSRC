@@ -5,7 +5,7 @@ import { RegisterDto, GetUserDto } from 'src/shared/dto';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/services/prisma/prisma.service';
 import { excludeFromObject } from 'src/utils/excludeFields';
 
 @Injectable()
