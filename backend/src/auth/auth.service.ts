@@ -43,11 +43,11 @@ export class AuthService {
     const isPasswordValid = await comparePassword(password, user.password);
     if (!isPasswordValid) throw new UnauthorizedException('invalid password');
 
-    const payload = { email: user.email };
+    const payload = { email: user.email, role: user.role };
     const token = await this.jwtService.signAsync(payload);
     return {
       token,
-      email,
+      email:user.email,
     };
   }
 }
