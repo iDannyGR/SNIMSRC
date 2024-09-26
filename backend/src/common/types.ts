@@ -11,3 +11,10 @@ export interface RequestWithUser extends Request {
     role: string;
   };
 }
+
+export interface dataPayload {
+  email: string;
+  role: string;
+  iat: number;
+  exp: number;
+}
