@@ -10,4 +10,5 @@ export default () => ({
     url: process.env.DATABASE_URL,
   },
   secretkey: process.env.MYSECRET_KEY,
+  refreshToken: process.env.REFRESH_TOKEN,
 });
