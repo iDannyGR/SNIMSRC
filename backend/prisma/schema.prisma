@@ -11,9 +11,11 @@ datasource db {
 }
 
 enum Roles  {
-  Admin
-  Creator
+  ADMIN
+  CREATOR
+  EMPLOYEE
 } 
+
 
 model Organization {
   id        Int @id @default(autoincrement())
@@ -32,8 +34,11 @@ model User{
   firstName String
   lastName  String
   password  String
-  position  Position?
+  position  Position @relation(fields: [positionId], references: [id]) 
+  positionId Int 
   role      Roles
+  area      Area @relation(fields: [areaId], references: [id])
+  areaId    Int
   notes     Note[]
   createAt  DateTime  @default(now())
   updateAt  DateTime   @updatedAt
@@ -47,31 +52,13 @@ model Area {
   createAt  DateTime  @default(now())
   updateAt  DateTime   @updatedAt
   deleteAt  DateTime? 
-  employees Employees[]
+  User User[]
 }
 
 model Position {
   id        Int @id @default(autoincrement())
   name      String @unique
-  createAt  DateTime  @default(now())
-  updateAt  DateTime   @updatedAt
-  deleteAt  DateTime?
-  employees Employees[]
-  user      User @relation(fields: [userId], references: [id])
-  userId    Int @unique
-}
-
-model Employees {
-  id        Int @id @default(autoincrement())
-  email     String @unique
-  firstName String
-  lastName  String
-  position  Position @relation(fields: [positionId], references: [id])
-  positionId Int
-  area       Area @relation(fields: [areaId], references: [id])
-  areaId    Int
-  notes     Note[]
-  notesEmployees notesEmployees[] 
+  Users     User[]
   createAt  DateTime  @default(now())
   updateAt  DateTime   @updatedAt
   deleteAt  DateTime?
@@ -79,21 +66,15 @@ model Employees {
 
 model Note {
   id        Int @id @default(autoincrement())
-  note      String
+  site    String
+  object  String
+  description String
+  result    String
   authorId  Int
   author    User @relation(fields: [authorId], references: [id])
-  employees Employees[]
-  noteEmployees notesEmployees[]
   createAt  DateTime  @default(now())
   updateAt  DateTime   @updatedAt
   deleteAt  DateTime?
 }
 
-model notesEmployees {
-  note       Note     @relation(fields: [noteId], references: [id])
-  noteId     Int
-  employee   Employees @relation(fields: [employeeId], references: [id])
-  employeeId Int
-  @@id([noteId, employeeId])
-}
 
