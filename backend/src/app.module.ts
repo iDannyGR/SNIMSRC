@@ -7,6 +7,7 @@ import { validate } from './config/env.validation';
 import { UsersModule } from './users/users.module';
 import configuration from './config/configuration';
 import { PrismaModule } from './services/prisma/prisma.module';
+import { PositionModule } from './position/position.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { PrismaModule } from './services/prisma/prisma.module';
       isGlobal: true,
       load: [configuration],
     }),
+    PositionModule,
   ],
   controllers: [],
   providers: [],

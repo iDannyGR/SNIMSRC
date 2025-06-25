@@ -6,11 +6,19 @@ export class AreaService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: CreateAreaDto): Promise<CreateAreaDto> {
+    const existingArea = await this.prisma.area.findUnique({where: { name: data.name }});
+      if(!existingArea) {
+        throw new NotFoundException(`Area with name ${data.name} already exists`);
+      }
     return this.prisma.area.create({ data });
   }
 
   async findAll(): Promise<CreateAreaDto[]> {
-    return this.prisma.area.findMany({ where: { deleteAt: null } });
+    try {
+      return this.prisma.area.findMany({ where: { deleteAt: null } });
+    } catch (error) {
+      throw new NotFoundException('No areas found');
+    }
   }
 
   async findOne(id: number): Promise<CreateAreaDto> {
@@ -33,8 +41,9 @@ export class AreaService {
   }
 
   async remove(id: number) {
-    return await this.prisma.area.delete({
+    return await this.prisma.area.update({
       where: { id },
+      data: { deleteAt: new Date() },
     });
   }
 }
