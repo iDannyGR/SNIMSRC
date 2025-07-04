@@ -19,16 +19,16 @@ export class AreaController {
 
   @Get(':id')
   async findOneArea(@Param('id') id: string):Promise<CreateAreaDto> {
-    return await this.areaService.findOne(+id);
+    return await this.areaService.findOne(id);
   }
 
   @Patch(':id')
   async updateArea(@Param('id') id: string, @Body() updateAreaDto: UpdateAreaDto):Promise<CreateAreaDto> {
-    return await this.areaService.update(+id, updateAreaDto);
+    return await this.areaService.update(id, updateAreaDto);
   }
 
   @Delete(':id')
   async removeArea(@Param('id') id: string):Promise<CreateAreaDto> {
-    return await this.areaService.remove(+id);
+    return await this.areaService.remove(id);
   }
 }

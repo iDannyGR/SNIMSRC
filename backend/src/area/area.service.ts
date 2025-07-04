@@ -21,7 +21,7 @@ export class AreaService {
     }
   }
 
-  async findOne(id: number): Promise<CreateAreaDto> {
+  async findOne(id: string): Promise<CreateAreaDto> {
     const data = await this.prisma.area.findUnique({
       where: { id },
     });
@@ -29,18 +29,22 @@ export class AreaService {
     return data;
   }
 
-  async update(id: number, updateAreaDto: UpdateAreaDto) {
+  async update(id: string, data: UpdateAreaDto) {
+    const isExists = await this.prisma.area.findUnique({ where: { id } });
+    if (!isExists) throw new NotFoundException('wrong id data');
     try {
       return await this.prisma.area.update({
         where: { id },
-        data: updateAreaDto,
+        data,
       });
     } catch (error) {
       throw new NotFoundException(`wrong ${id} data`);
     }
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
+    const area = await this.prisma.area.findUnique({ where: { id } });
+    if (!area) throw new NotFoundException('wrong id data');
     return await this.prisma.area.update({
       where: { id },
       data: { deleteAt: new Date() },
