@@ -10,12 +10,12 @@ export class AreaService {
       if(!existingArea) {
         throw new NotFoundException(`Area with name ${data.name} already exists`);
       }
-    return this.prisma.area.create({ data });
+    return await this.prisma.area.create({ data });
   }
 
   async findAll(): Promise<CreateAreaDto[]> {
     try {
-      return this.prisma.area.findMany({ where: { deleteAt: null } });
+      return await this.prisma.area.findMany({ where: { deleteAt: null } });
     } catch (error) {
       throw new NotFoundException('No areas found');
     }

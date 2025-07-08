@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { NoteService } from './note.service';
-import { CreateNoteDto } from './dto/create-note.dto';
+import { NoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 
 @Controller('note')
@@ -8,8 +8,8 @@ export class NoteController {
   constructor(private readonly noteService: NoteService) {}
 
   @Post()
-  create(@Body() createNoteDto: CreateNoteDto) {
-    return this.noteService.create(createNoteDto);
+   async create(@Body() data: NoteDto) {
+    return await this.noteService.create(data);
   }
 
   @Get()
