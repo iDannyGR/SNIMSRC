@@ -1,10 +1,10 @@
-import { IsDate, IsNotEmpty, IsString, MinLength } from "class-validator";
+import { IsDate, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
 export class NoteDto {
   @IsString()
   @IsNotEmpty()
-  siteId: { connect: { id: string } };
-  
+  siteId: string;
+
   @IsString()
   @IsNotEmpty()
   @MinLength(5)
@@ -19,10 +19,10 @@ export class NoteDto {
   @IsNotEmpty()
   @MinLength(5)
   result: string;
-  
+
   @IsString()
   @IsNotEmpty()
-  authorId: { connect: { id: string } };
+  authorId: string;
 
   @IsDate()
   deleteAt?: Date | null;

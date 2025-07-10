@@ -6,10 +6,10 @@ export class AreaService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: CreateAreaDto): Promise<CreateAreaDto> {
-    const existingArea = await this.prisma.area.findUnique({where: { name: data.name }});
-      if(!existingArea) {
-        throw new NotFoundException(`Area with name ${data.name} already exists`);
-      }
+    const existingArea = await this.prisma.area.findUnique({ where: { name: data.name } });
+    if (!existingArea) {
+      throw new NotFoundException(`Area with name ${data.name} already exists`);
+    }
     return await this.prisma.area.create({ data });
   }
 

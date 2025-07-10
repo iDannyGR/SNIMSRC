@@ -7,6 +7,5 @@ import { PrismaModule } from 'src/services/prisma/prisma.module';
   controllers: [PositionController],
   providers: [PositionService],
   imports: [PrismaModule],
-  
 })
 export class PositionModule {}

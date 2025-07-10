@@ -8,27 +8,30 @@ export class AreaController {
   constructor(private readonly areaService: AreaService) {}
 
   @Post()
-  async create(@Body() createAreaDto: CreateAreaDto):Promise<CreateAreaDto> {
+  async create(@Body() createAreaDto: CreateAreaDto): Promise<CreateAreaDto> {
     return await this.areaService.create(createAreaDto);
   }
 
   @Get()
-  async findAllAreas():Promise<CreateAreaDto[]> {
+  async findAllAreas(): Promise<CreateAreaDto[]> {
     return await this.areaService.findAll();
   }
 
   @Get(':id')
-  async findOneArea(@Param('id') id: string):Promise<CreateAreaDto> {
+  async findOneArea(@Param('id') id: string): Promise<CreateAreaDto> {
     return await this.areaService.findOne(id);
   }
 
   @Patch(':id')
-  async updateArea(@Param('id') id: string, @Body() updateAreaDto: UpdateAreaDto):Promise<CreateAreaDto> {
+  async updateArea(
+    @Param('id') id: string,
+    @Body() updateAreaDto: UpdateAreaDto,
+  ): Promise<CreateAreaDto> {
     return await this.areaService.update(id, updateAreaDto);
   }
 
   @Delete(':id')
-  async removeArea(@Param('id') id: string):Promise<CreateAreaDto> {
+  async removeArea(@Param('id') id: string): Promise<CreateAreaDto> {
     return await this.areaService.remove(id);
   }
 }

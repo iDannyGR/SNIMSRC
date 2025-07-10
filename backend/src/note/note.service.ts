@@ -2,28 +2,63 @@ import { Injectable } from '@nestjs/common';
 import { NoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 import { PrismaService } from 'src/services/prisma/prisma.service';
+import e from 'express';
 
 @Injectable()
 export class NoteService {
-  constructor(private readonly prisma:PrismaService) {}
-  
+  constructor(private readonly prisma: PrismaService) {}
+
   async create(data: NoteDto) {
-    return await this.prisma.note.create({data});
+    try {
+      return await this.prisma.note.create({ data });
+    } catch (error) {
+      throw new Error('Error creating note');
+    }
   }
 
-  findAll() {
-    return `This action returns all note`;
+  async findAll() {
+    try {
+      return await this.prisma.note.findMany({
+        where: { deleteAt: null },
+      });
+    } catch (Error) {
+      throw new Error(`Error fetching notes: ${error.message}`);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} note`;
+  async findOne(id: string) {
+    const isExists = await this.prisma.note.findUnique({
+      where: { id },
+    });
+    if (!isExists) {
+      throw new Error(`Note with id ${id} not found`);
+    }
+    return isExists;
   }
 
-  update(id: number, updateNoteDto: UpdateNoteDto) {
-    return `This action updates a #${id} note`;
+  async update(id: string, data: UpdateNoteDto) {
+    const isExists = await this.prisma.note.findUnique({
+      where: { id },
+    });
+    if (!isExists) {
+      throw new Error(`Note with id ${id} not found`);
+    }
+    return await this.prisma.note.update({
+      where: { id },
+      data,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} note`;
+  async remove(id: string) {
+    const isExists = await this.prisma.note.findUnique({
+      where: { id },
+    });
+    if (!isExists) {
+      throw new Error(`Note with id ${id} not found`);
+    }
+    return await this.prisma.note.update({
+      where: { id },
+      data: { deleteAt: new Date() },
+    });
   }
 }
