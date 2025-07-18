@@ -23,11 +23,8 @@ export class AreaController {
   }
 
   @Patch(':id')
-  async updateArea(
-    @Param('id') id: string,
-    @Body() updateAreaDto: UpdateAreaDto,
-  ): Promise<CreateAreaDto> {
-    return await this.areaService.update(id, updateAreaDto);
+  async updateArea(@Param('id') id: string, @Body() data: UpdateAreaDto): Promise<CreateAreaDto> {
+    return await this.areaService.update(id, data);
   }
 
   @Delete(':id')

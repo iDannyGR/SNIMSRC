@@ -29,8 +29,9 @@ export class OrganizationService {
 
   async deleteOrganization(id: string): Promise<CreateOrganizationDto> {
     try {
-      return await this.prisma.organization.delete({
+      return await this.prisma.organization.update({
         where: { id },
+        data: { deleteAt: new Date() },
       });
     } catch (error) {
       throw new NotFoundException('wrong id data');

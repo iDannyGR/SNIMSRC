@@ -12,22 +12,22 @@ export class SiteController {
   }
 
   @Get()
-  findAll() {
-    return this.siteService.findAll();
+  async findAll() {
+    return await this.siteService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.siteService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    return await this.siteService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() data: SiteDto) {
-    return this.siteService.update(id, data);
+  async update(@Param('id') id: string, @Body() data: SiteDto) {
+    return await this.siteService.update(id, data);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.siteService.remove(id);
+  async remove(@Param('id') id: string) {
+    return await this.siteService.remove(id);
   }
 }

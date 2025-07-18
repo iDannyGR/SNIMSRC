@@ -6,13 +6,13 @@ import { PrismaService } from 'src/services/prisma/prisma.service';
 export class SiteService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: SiteDto) {
+  async create(data: SiteDto): Promise<SiteDto> {
     const isExists = await this.prisma.site.findUnique({ where: { name: data.name } });
     if (isExists) throw new Error('el lugar ya existe');
     return this.prisma.site.create({ data });
   }
 
-  async findAll() {
+  async findAll(): Promise<SiteDto[]> {
     try {
       return await this.prisma.site.findMany({ where: { deleteAt: null } });
     } catch (error) {
@@ -20,7 +20,7 @@ export class SiteService {
     }
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<SiteDto> {
     const data = await this.prisma.site.findUnique({
       where: { id },
     });
@@ -28,9 +28,9 @@ export class SiteService {
     return data;
   }
 
-  async update(id: string, data: SiteDto) {
-    const isExists = this.prisma.site.findUnique({ where: { name: data.name } });
-    if (isExists) throw new Error('el lugar ya existe');
+  async update(id: string, data: SiteDto): Promise<SiteDto> {
+    const isExists = await this.prisma.site.findUnique({ where: { id } });
+    if (!isExists) throw new Error('el lugar no existe');
     try {
       return await this.prisma.site.update({
         where: { id },
@@ -41,7 +41,7 @@ export class SiteService {
     }
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<SiteDto> {
     const isExists = await this.prisma.site.findUnique({ where: { id } });
     if (!isExists) throw new Error('No se encontró el sitio con el ID proporcionado');
     try {

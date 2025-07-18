@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { NoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 import { PrismaService } from 'src/services/prisma/prisma.service';
-import e from 'express';
 
 @Injectable()
 export class NoteService {
@@ -21,8 +20,8 @@ export class NoteService {
       return await this.prisma.note.findMany({
         where: { deleteAt: null },
       });
-    } catch (Error) {
-      throw new Error(`Error fetching notes: ${error.message}`);
+    } catch (error) {
+      throw new Error('Error fetching notes');
     }
   }
 
