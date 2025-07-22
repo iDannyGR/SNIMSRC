@@ -1,3 +1,11 @@
+import { MainBar } from "@/components/search";
+import { SideBar } from "@/components/sidebar";
+
 export default function Home() {
-  return <div className="w-[98vw] h-[98vh] border-1 rounded-sm shadow-md">index</div>;
+  return (
+    <div>
+      <MainBar />
+      <SideBar />
+    </div>
+  );
 }
