@@ -9,9 +9,9 @@ export default function Search() {
         placeholder="Buscar actividad"
         name="search"
         id="search"
-        className="w-96 h12 rounded-md shadow-md"
+        className="w-96 h-12 rounded-md shadow-md focus:outline-0 text-center"
       />
-      <MagnifyingGlassPlusIcon className="w-6 h-6 right-0 text-gray-400" />
+      <MagnifyingGlassPlusIcon className="absolute w-6 h-6 right-0 text-gray-400" />
     </div>
   );
 }

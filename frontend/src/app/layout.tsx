@@ -1,7 +1,8 @@
+import { MainBar } from "@/components/search";
+import { SideBar } from "@/components/sidebar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"]
@@ -24,7 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div className="flex h-screen">
+          <SideBar /> {/* Componente fijo */}
+          <div className="flex-1 flex flex-col">
+            <MainBar /> {/* Barra superior fija */}
+            <main className="flex-1 overflow-auto">
+              {children} {/* Contenido dinámico */}
+            </main>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
