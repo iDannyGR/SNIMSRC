@@ -12,7 +12,7 @@ export default function MainBar() {
       <Search />
       <GenericButton
         label={route === "/" ? "añadir actividad" : "Añadir"}
-        className="flex items-center justify-center mr-2 bg-blue-950 text-white p-2 cursor-pointer"
+        className="flex items-center justify-center mr-2 bg-blue-950 text-white p-2 cursor-pointer hover:bg-black"
         icon={<PlusIcon className="h-8 mr-0.5" />}
         type="button"
         onClick={() => console.log("add me product")}
