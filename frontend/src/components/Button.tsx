@@ -22,7 +22,7 @@ const GenericButton: React.FC<GenericButtonProps> = ({
       <button
         type={type}
         onClick={onClick}
-        className={`p-1 rounded-md inline-flex text-center justify-center font-bold transition-colors cursor-pointer ${className}`}
+        className={`rounded-xl inline-flex text-center justify-center transition-colors cursor-pointer ${className}`}
         disabled={disabled}
       >
         {icon}

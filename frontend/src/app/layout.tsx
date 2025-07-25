@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={`${font.className} antialiased`}>
         <div className="flex h-screen">
           <SideBar /> {/* Componente fijo */}
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col items-center">
             <MainBar /> {/* Barra superior fija */}
             <main className="flex-1 overflow-auto">
               {children} {/* Contenido dinámico */}
