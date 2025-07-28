@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react";
 
 export default function ModalForm() {
   return (
-    <div>
-        <form action="">
-            <input type=""
-                placeholder='Escribe tu actividad'
-                id=''
-                className='w-full h-20 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-            />
-        </form>
+    <div className="w-[100vh] h-[100%] flex items-center justify-center border-2 border-red-800">
+      <form action="">
+        <input
+          type="date"
+          id="date"
+          className="rounded-xl inline-flex p-3 border-2 bg-white "
+        />
+      </form>
     </div>
-  )
+  );
 }

@@ -21,7 +21,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps): React.
       <div>
         <GenericButton
           onClick={onClose}
-          className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded"
+          className="absolute top-2 right-2 bg-red-500 text-white p-2"
           label="Close"
         />
       </div>
