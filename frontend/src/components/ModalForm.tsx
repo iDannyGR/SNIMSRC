@@ -1,15 +1,40 @@
-import React from "react";
-
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 export default function ModalForm() {
   return (
-    <div className="w-[100vh] h-[100%] flex items-center justify-center border-2 border-red-800">
-      <form action="">
-        <input
-          type="date"
-          id="date"
-          className="rounded-xl inline-flex p-3 border-2 bg-white "
-        />
-      </form>
-    </div>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Share</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Share link</DialogTitle>
+          <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
+        </DialogHeader>
+        <div className="flex items-center gap-2">
+          <div className="grid flex-1 gap-2">
+            <h3 className="sr-only">Link</h3>
+            <Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
+          </div>
+        </div>
+        <DialogFooter className="sm:justify-start">
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Close
+            </Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
