@@ -20,7 +20,7 @@ interface ModalFormProps {
   children: React.ReactNode; // Acepta cualquier elemento React como children
 }
 
-export default function ModalForm({children}:ModalFormProps) {
+export default function ModalForm({ children }: ModalFormProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
