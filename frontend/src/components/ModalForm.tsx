@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import CalendarCustom from "./customCalendar";
+import CalendarPicker from "./customCalendar";
 import {
   Dialog,
   DialogClose,
@@ -22,6 +22,7 @@ interface ModalFormProps {
 
 export default function ModalForm({ children }: ModalFormProps) {
   const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useCreateNote();
+  console.log(values.date);
   return (
     <Dialog>
       <form onSubmit={handleSubmit}>
@@ -33,29 +34,34 @@ export default function ModalForm({ children }: ModalFormProps) {
             <DialogDescription>Recuerda se descriptivo en el detalle de la actividad</DialogDescription>
           </DialogHeader>
           <div className="flex items-center gap-4 justify-center">
-            <CalendarCustom />
+            <CalendarPicker value={values.date} label={"selecciona fecha"} onChange={handleChange} />
             <Separator orientation="vertical" />
             <CustomSelect />
           </div>
           <Separator className="my-4" />
           <Input
+            id="object"
             type="text"
             placeholder="Objetivo de la actividad"
             value={values.object}
-            id="object"
             onBlur={handleBlur}
+            onChange={handleChange}
           />
           <div className="flex items-center gap-2">
             <div className="grid flex-1 gap-8">
               <Textarea
+                id="description"
                 placeholder="describe la actividad"
                 value={values.description}
                 onBlur={handleBlur}
+                onChange={handleChange}
               />
               <Textarea
+                id="results"
                 placeholder="Detalle los resultados"
                 value={values.results}
                 onBlur={handleBlur}
+                onChange={handleChange}
               />
             </div>
           </div>
