@@ -4,7 +4,7 @@ import { noteSchema } from "@/schemas/note.schema";
 // import { httpClient } from "@/lib/api/axios.config";
 
 interface noteData {
-  date: Date | null; // Cambiado a Date o string para manejar fechas,
+  date: Date; // Cambiado a Date o string para manejar fechas,
   site: string;
   object: string;
   description: string;
@@ -12,7 +12,7 @@ interface noteData {
 }
 
 const initialValues: noteData = {
-  date: null,
+  date: new Date(), // Inicializa con la fecha actual
   site: "",
   object: "",
   description: "",

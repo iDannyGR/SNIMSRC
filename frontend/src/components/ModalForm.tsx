@@ -15,16 +15,18 @@ import {
 } from "@/components/ui/dialog";
 import { CustomSelect } from "./customSelect";
 import { useCreateNote } from "@/hooks/useNote";
+import { Form } from "./ui/form";
 
 interface ModalFormProps {
   children: React.ReactNode; // Acepta cualquier elemento React como children
 }
 
 export default function ModalForm({ children }: ModalFormProps) {
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit } = useCreateNote();
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit, setFieldValue } = useCreateNote();
   console.log(values.date);
   return (
     <Dialog>
+      <Form onSubmit={values}>
       <form onSubmit={handleSubmit}>
         <DialogTrigger asChild>{children}</DialogTrigger>
         <DialogContent className="sm:max-w-md">
@@ -34,7 +36,7 @@ export default function ModalForm({ children }: ModalFormProps) {
             <DialogDescription>Recuerda se descriptivo en el detalle de la actividad</DialogDescription>
           </DialogHeader>
           <div className="flex items-center gap-4 justify-center">
-            <CalendarPicker value={values.date} label={"selecciona fecha"} onChange={handleChange} />
+            <CalendarPicker value={values.date} label={"selecciona fecha"} onChange={(date)=>setFieldValue("date",date)} />
             <Separator orientation="vertical" />
             <CustomSelect />
           </div>
@@ -75,6 +77,7 @@ export default function ModalForm({ children }: ModalFormProps) {
           </DialogFooter>
         </DialogContent>
       </form>
+      </Form>
     </Dialog>
   );
 }
