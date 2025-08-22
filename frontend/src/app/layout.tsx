@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import SideBar from "@/components/SideBar";
 
 const font = Nunito_Sans({
   variable: "--font-nunito-sans",
@@ -21,7 +22,7 @@ export default function RootLayout({
     <html lang="es" className="scroll-smooth">
       <body className={`${font.className} antialiased`}>
         <div className="flex h-screen">
-          {/* <SideBar /> Componente fijo */}
+          <SideBar />
           <div className="flex-1 flex flex-col items-center">
             {/* <MainBar /> Barra superior fija */}
             <main className="flex-1 overflow-auto">{children}</main>
