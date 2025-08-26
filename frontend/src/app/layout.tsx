@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import Search from "@/components/Search/Search";
 import SideBar from "@/components/SideBar";
-
 const font = Nunito_Sans({
   variable: "--font-nunito-sans",
   subsets: ["latin"]
@@ -24,7 +24,7 @@ export default function RootLayout({
         <div className="flex h-screen">
           <SideBar />
           <div className="flex-1 flex flex-col items-center">
-            {/* <MainBar /> Barra superior fija */}
+            <Search />
             <main className="flex-1 overflow-auto">{children}</main>
           </div>
         </div>

@@ -59,7 +59,8 @@
     ".next/types/**/*.ts",
     "i18n.js",
     "src/app/api/auth/*.ts",
-    "src/middleware.ts"
+    "src/middleware.ts",
+    "src/app/providers/heroProviders.tsx"
   ],
   "exclude": ["node_modules"]
 }

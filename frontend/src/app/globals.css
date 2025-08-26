@@ -1,38 +1,7 @@
 @import "tailwindcss";
-@plugin "daisyui/theme" {
-  name: "bitacoras";
-  default: false;
-  prefersdark: false;
-  color-scheme: "light";
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(96% 0.007 247.896);
-  --color-base-300: oklch(98% 0.002 247.839);
-  --color-base-content: oklch(13% 0.028 261.692);
-  --color-primary: oklch(37% 0.146 265.522);
-  --color-primary-content: oklch(98% 0.003 247.858);
-  --color-secondary: oklch(14% 0.005 285.823);
-  --color-secondary-content: oklch(98% 0.003 247.858);
-  --color-accent: oklch(48% 0.243 264.376);
-  --color-accent-content: oklch(98% 0.003 247.858);
-  --color-neutral: oklch(19.616% 0.063 257.651);
-  --color-neutral-content: oklch(98% 0.003 247.858);
-  --color-info: oklch(37% 0.146 265.522);
-  --color-info-content: oklch(98% 0.003 247.858);
-  --color-success: oklch(98% 0.003 247.858);
-  --color-success-content: oklch(48% 0.243 264.376);
-  --color-warning: oklch(100% 0 0);
-  --color-warning-content: oklch(57% 0.245 27.325);
-  --color-error: oklch(44% 0.177 26.899);
-  --color-error-content: oklch(98% 0.003 247.858);
-  --radius-selector: 1rem;
-  --radius-field: 1rem;
-  --radius-box: 1rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.28125rem;
-  --border: 2px;
-  --depth: 1;
-  --noise: 0;
-};
+@plugin "./hero.ts";
+@source '../../node_modules/@heroui/theme/dist//*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
 
 /* :root {
   --background: #ffffff;
