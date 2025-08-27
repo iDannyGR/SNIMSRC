@@ -1,12 +1,12 @@
 "use client";
-import { Navbar, NavbarBrand, NavbarContent, Input, Button } from "@heroui/react";
+import { Navbar, NavbarBrand, NavbarContent, Input } from "@heroui/react";
+import { Button } from "@heroui/button";
 import { SearchIcon } from "./SearchIcon";
 import React from "react";
 
 export default function Search(): React.JSX.Element {
   return (
     <Navbar className="w-[90%]  mt-10 rounded-md bg-white shadow-[0px_0px_8px_3px_rgba(0,_0,_0,_0.1)]">
-    
       <NavbarContent as="div" justify="center" className="border">
         <Input
           isClearable
@@ -27,7 +27,7 @@ export default function Search(): React.JSX.Element {
         />
       </NavbarContent>
       <NavbarContent justify="end">
-        <Button color="danger" size="md">
+        <Button color="primary" size="md">
           Nueva Actividad
         </Button>
       </NavbarContent>
