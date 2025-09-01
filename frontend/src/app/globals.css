@@ -1,17 +1,23 @@
 @import "tailwindcss";
-@plugin "./hero.ts";
-@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
-@custom-variant dark (&:is(.dark *));
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: #f3f3f9;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -27,4 +33,4 @@
     cursor: pointer;
     background-color: hsl(250, 8%, 65%);
   }
-} */
+}
