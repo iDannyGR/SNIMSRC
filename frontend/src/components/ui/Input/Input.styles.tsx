@@ -8,8 +8,7 @@ export const getInputClasses = (
   hasRightIcon: boolean = false,
   className?: string
 ) => {
-  const baseClasses =
-    "w-full border rounded-md focus:outline-0  disabled:opacity-50";
+  const baseClasses = "w-full border-b  focus:outline-0  disabled:opacity-50";
 
   const stateClasses: Record<InputState, string> = {
     default: "border-gray-300 focus:border-blue-500 focus:ring-blue-500 placeholder:text-gray-400",
@@ -23,9 +22,9 @@ export const getInputClasses = (
   };
 
   const sizeClasses: Record<InputSize, string> = {
-    sm: "px-2.5 py-1.5 text-sm",
-    md: "px-3 py-2 text-base",
-    lg: "px-4 py-3 text-lg"
+    sm: "w-[30%] text-sm",
+    md: "w-[50%] text-base",
+    lg: "w-[70%] text-lg"
   };
 
   const paddingClasses = {

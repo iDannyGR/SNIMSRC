@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { Input as HeadslessInput } from "@headlessui/react";
 import { InputProps } from "./Input.types";
 import { useInput } from "./useInput";
 import { IconWrapper } from "./Input.styles";
@@ -59,7 +60,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             <div className="absolute inset-y-0 left-0 flex items-center pl-3">{leftElement}</div>
           )}
 
-          <input
+          <HeadslessInput
             ref={ref}
             id={inputId}
             type={type}
