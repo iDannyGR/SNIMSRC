@@ -3,6 +3,7 @@ import { Nunito_Sans } from "next/font/google";
 import SideBar from "@/components/SideBar";
 import { Search } from "@/components/SearchBar";
 import "./globals.css";
+import Breadcrumb from "@/components/Breadcrumb";
 const font = Nunito_Sans({
   variable: "--font-nunito-sans",
   subsets: ["latin"]
@@ -18,17 +19,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="es" className="scroll-smooth">
-      <body className={`${font.className} antialiased`}>
-        <div className="flex h-screen">
-          <SideBar />
-          <div className="flex-1 flex flex-col items-center">
-            <Search />
-            <main className="flex-1 overflow-auto">{children}</main>
-          </div>
-        </div>
-      </body>
-    </html>
-  );
+ return (
+   <html lang="es" className="scroll-smooth">
+     <body className={`${font.className} antialiased`}>
+       <div className="flex h-screen">
+         <SideBar />
+         <div className="flex-1 flex flex-col ">
+           <div className="flex flex-col">
+             <div>
+               <Breadcrumb />
+             </div>
+             <div className="flex justify-center">
+               <Search />
+             </div>
+           </div>
+
+           {/* Contenido principal */}
+           <main className="flex-1 overflow-auto p-4">{children}</main>
+         </div>
+       </div>
+     </body>
+   </html>
+ );
 }
