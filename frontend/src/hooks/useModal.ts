@@ -1,27 +1,14 @@
-import { useState } from "react";
+"use client"
+import React from 'react'
+const useModal= ()=>{
 
-export function useModal() {
-  const [modalState, setModalState] = useState({
-    isOpen: false,
-    mode: "create" as "create" | "edit",
-    data: null as any
-  });
-
-  const openModal = (mode: "create" | "edit", data?: any) => {
-    setModalState({
-      isOpen: true,
-      mode,
-      data: data || null
-    });
-  };
-
-  const closeModal = () => {
-    setModalState((prev) => ({ ...prev, isOpen: false }));
-  };
-
-  return {
-    modalState,
-    openModal,
-    closeModal
-  };
+    const [isOpen, setIsOpen] = React.useState(false);
+    
+return {
+    isOpen,
+    openModal: () => setIsOpen(true),
+    closeModal: () => setIsOpen(false)
+    }
 }
+
+export {useModal};

@@ -1,6 +1,6 @@
-import { NoteType } from "@/types/note.type"
+import { NoteType } from "@/types/note.type";
 
-export const tempNotes:NoteType[] = [
+export const tempNotes: NoteType[] = [
   {
     siteId: "site-001",
     object: "Revisión de seguridad mensual",
