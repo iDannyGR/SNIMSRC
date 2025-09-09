@@ -8,7 +8,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   data?: NoteType;
-  children:React.ReactNode;
+  children: React.ReactNode;
 }
 
 export default function Modal({ isOpen, onClose, data, children }: ModalProps): React.ReactElement {
