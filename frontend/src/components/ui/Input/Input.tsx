@@ -1,5 +1,4 @@
-
-import { forwardRef } from "react";
+import { forwardRef, useId } from "react";
 import { Input as HeadslessInput } from "@headlessui/react";
 import { InputProps } from "./Input.types";
 import { useInput } from "./useInput";
@@ -40,7 +39,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       className
     );
 
-    const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
+    const inputId = id || useId();
 
     return (
       <div className={twMerge(fullWidth ? "w-full" : "w-auto", wrapperClassName)}>
