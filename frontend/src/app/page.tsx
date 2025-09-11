@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
 import Modal from "@/components/Modal/Modal";
-import { useModal } from "@/hooks/useModal";
+import React from "react";
+import { modalStore } from "@/store/modalStore";
 export default function Page() {
-  const { isOpen, closeModal } = useModal();
-  console.log(isOpen);
+  const { isOpen, closeModal } = modalStore();
   return (
     <div>
       <Modal isOpen={isOpen} onClose={closeModal}>

@@ -8,7 +8,7 @@ export const getButtonClasses = (
   disabled?: boolean
 ) => {
   const baseClasses =
-    "inline-flex items-center justify-center font-semibold rounded shadow-slate-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
+    "inline-flex items-center justify-center m-1.5 font-semibold rounded shadow-slate-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
 
   const variantClasses: Record<ButtonVariant, string> = {
     primary: "bg-blue-900 text-white hover:bg-blue-950",

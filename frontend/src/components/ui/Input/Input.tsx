@@ -38,8 +38,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       hasRightIcon,
       className
     );
-
-    const inputId = id || useId();
+    const generateId = useId();
+    const inputId = id ?? generateId;
 
     return (
       <div className={twMerge(fullWidth ? "w-full" : "w-auto", wrapperClassName)}>
