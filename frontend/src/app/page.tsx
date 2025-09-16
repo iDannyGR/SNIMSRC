@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <div>
       <Modal isOpen={isOpen} onClose={closeModal}>
-      <NoteForm />
+        <NoteForm />
       </Modal>
     </div>
   );
