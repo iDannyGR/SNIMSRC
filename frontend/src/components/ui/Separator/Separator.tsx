@@ -1,8 +1,23 @@
-'use client'
-import React from 'react'
+"use client";
 
-export default function Separator() {
+import * as React from "react";
+import { twMerge } from "tailwind-merge";
+
+interface SeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
+  orientation?: "horizontal" | "vertical";
+}
+
+export function Separator({ orientation = "horizontal", className, ...props }: SeparatorProps) {
   return (
-    <div></div>
-  )
+    <div
+      role="separator"
+      aria-orientation={orientation}
+      className={twMerge(
+        "shrink-0 bg-gray-200 dark:bg-gray-300",
+        orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
+        className
+      )}
+      {...props}
+    />
+  );
 }

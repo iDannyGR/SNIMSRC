@@ -7,7 +7,11 @@ export default function Page() {
   const { isOpen, closeModal } = modalStore();
   return (
     <div>
-      <Modal isOpen={isOpen} onClose={closeModal}>
+      <Modal
+        isOpen={isOpen}
+        onClose={closeModal}
+        description="Llena los campos para crear una nueva actividad"
+      >
         <NoteForm />
       </Modal>
     </div>
