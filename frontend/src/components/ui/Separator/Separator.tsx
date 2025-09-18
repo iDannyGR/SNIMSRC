@@ -14,7 +14,7 @@ export function Separator({ orientation = "horizontal", className, ...props }: S
       aria-orientation={orientation}
       className={twMerge(
         "shrink-0 bg-gray-200 dark:bg-gray-300",
-        orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
+        orientation === "horizontal" ? "h-px w-full" : "h-full w-px mx-4",
         className
       )}
       {...props}
