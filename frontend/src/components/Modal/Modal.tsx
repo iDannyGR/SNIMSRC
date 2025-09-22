@@ -3,7 +3,7 @@ import { NoteType } from "@/types/note.type";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import React from "react";
 import { Button } from "../ui";
-import { Separator } from "../ui/Separator/Separator";
+import { Separator } from "../ui";
 
 interface ModalProps {
   isOpen: boolean;

@@ -3,7 +3,7 @@ import React from "react";
 import { Input } from "./ui";
 import Dropdown from "./ui/Dropdown/Dropdown";
 import Calendar from "./ui/Calendar/Calendar";
-import { Separator } from "./ui/Separator/Separator";
+import { Separator } from "./ui";
 
 export default function NoteForm(): React.JSX.Element {
   return (
