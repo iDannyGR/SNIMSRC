@@ -1,17 +1,9 @@
 "use client";
-import { NoteType } from "@/types/note.type";
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import React from "react";
 import { Button } from "../ui";
 import { Separator } from "../ui";
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  description: string;
-  data?: NoteType;
-  children: React.ReactNode;
-}
+import { ModalProps } from "./Modal.types";
 
 export default function Modal({
   isOpen,

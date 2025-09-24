@@ -1,19 +1,25 @@
-import { Textarea as HeadlessTextArea } from "@headlessui/react";
+import { Textarea as HeadlessTextArea, type TextareaProps } from "@headlessui/react";
 import { forwardRef } from "react";
-import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
+type Props = TextareaProps &
+  React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+    className?: string;
+  };
 
-const Textarea = forwardRef<HTMLTextAreaElement>(
-  ({className,...props }, ref) => {
-    return (
-        <HeadlessTextArea
-        ref={ref}
-        disabled={disabled}
-        className={clsx(
-          "w-full rounded border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500",
-          disabled && "cursor-not-allowed bg-gray-100 opacity-50",
-        className )}
-        {...props}
-      />
-    );
-  } 
+const TextArea = forwardRef<HTMLTextAreaElement, Props>(({ className, ...props }, ref) => {
+  return (
+    <HeadlessTextArea
+      ref={ref}
+      className={twMerge(
+        "w-full rounded border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500",
+        className
+      )}
+      {...props}
+    />
+  );
+});
+
+TextArea.displayName = "Textarea";
+
+export default TextArea;

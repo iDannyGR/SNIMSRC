@@ -1,10 +1,7 @@
-import { Field, Label, Textarea } from "@headlessui/react";
+import { Description, Field, Label } from "@headlessui/react";
 import React from "react";
 import { Input } from "./ui";
-import Dropdown from "./ui/Dropdown/Dropdown";
-import Calendar from "./ui/Calendar/Calendar";
-import { Separator } from "./ui";
-
+import { Calendar, Separator, Dropdown, TextArea } from "./ui";
 export default function NoteForm(): React.JSX.Element {
   return (
     <div className="flex flex-col max-w-full gap-4">
@@ -28,11 +25,17 @@ export default function NoteForm(): React.JSX.Element {
           placeholder="Escribe el nombre de la actividad"
         ></Input>
       </Field>
-      <Textarea
-        name="objetivo"
-        className="border min-w-full rounded-md border-gray-200 p-2 selected:bg-blue-100 focus:border-blue-500 focus:outline-none focus:ring-blue-500"
-      ></Textarea>
-      <Textarea name="objetivo" className="border  min-w-full"></Textarea>
+      <Field>
+        <Label htmlFor="objetivo">Objetivo de la actividad:</Label>
+        <TextArea name="objetivo"></TextArea>
+      </Field>
+      <Field>
+        <Label htmlFor="resultado">Resultados:</Label>
+        <Description className="text-sm/6 text-black/50">
+          describe brevemente el resultado de las acciones
+        </Description>
+        <TextArea name="resultado"></TextArea>
+      </Field>
     </div>
   );
 }
