@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { noteSchema } from "@/schemas/note.schema";
-// import { httpClient } from "@/lib/api/axios.config";
 
 interface noteData {
   date: Date; // Cambiado a Date o string para manejar fechas,
@@ -9,6 +8,7 @@ interface noteData {
   object: string;
   description: string;
   results: string;
+  comments?: string;
 }
 
 const initialValues: noteData = {
@@ -16,7 +16,8 @@ const initialValues: noteData = {
   site: "",
   object: "",
   description: "",
-  results: ""
+  results: "",
+  comments: ""
 };
 
 const useCreateNote = () => {

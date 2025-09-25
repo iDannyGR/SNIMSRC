@@ -68,9 +68,10 @@ model Note {
   id        String @id @default(uuid())
   site    Site @relation(fields: [siteId], references: [id])
   siteId   String
-  object  String
   description String
+  object  String
   result    String
+  comments  String?
   authorId  String
   author    User @relation(fields: [authorId], references: [id])
   createAt  DateTime  @default(now())

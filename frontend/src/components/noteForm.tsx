@@ -2,7 +2,9 @@ import { Description, Field, Label } from "@headlessui/react";
 import React from "react";
 import { Input } from "./ui";
 import { Calendar, Separator, Dropdown, TextArea } from "./ui";
+import { useCreateNote } from "@/hooks/useCreateNote";
 export default function NoteForm(): React.JSX.Element {
+  const {touched, errors, handleChange, handleSubmit, values, } = useCreateNote();
   return (
     <div className="flex flex-col max-w-full gap-4">
       <div className="flex items-center justify-around">
@@ -20,14 +22,29 @@ export default function NoteForm(): React.JSX.Element {
       <Field className="flex flex-col gap-1">
         <Label htmlFor="title">Nombre de actividad</Label>
         <Input
-          name="title"
+          name="description"
+          onChange={handleChange}
+          value={values.description}
+          state={touched.description && errors.description ? "error" : "default"}
           className="border w-full rounded-md p-2"
           placeholder="Escribe el nombre de la actividad"
         ></Input>
       </Field>
       <Field>
         <Label htmlFor="objetivo">Objetivo de la actividad:</Label>
-        <TextArea name="objetivo"></TextArea>
+        <TextArea 
+          name="objetivo"
+          onChange={handleChange}
+          value={values.object}
+          state={touched.object && errors.object ? "error" : "default"}
+        />
+      </Field>
+      <Field>
+        <Label htmlFor="resultado">Resultados:</Label>
+        <Description className="text-sm/6 text-black/50">
+          describe brevemente el resultado de las acciones
+        </Description>
+        <TextArea name="resultado"></TextArea>
       </Field>
       <Field>
         <Label htmlFor="resultado">Resultados:</Label>
