@@ -10,7 +10,7 @@ export default function NoteForm(): React.JSX.Element {
       <div className="flex items-center justify-around">
         <Field className="flex flex-col gap-2">
           <Label htmlFor="date">Fecha de la Actividad:</Label>
-          <Calendar />
+          <Calendar  date={values.date} onChange={handleChange}/>
         </Field>
         <Separator orientation="vertical" className="h-10" />
         <Field className="flex flex-col gap-2">
@@ -36,7 +36,7 @@ export default function NoteForm(): React.JSX.Element {
           name="objetivo"
           onChange={handleChange}
           value={values.object}
-          state={touched.object && errors.object ? "error" : "default"}
+          invalid={touched.object && errors.object ? true : false}
         />
       </Field>
       <Field>
