@@ -3,14 +3,13 @@
 import * as React from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import { es } from "date-fns/locale";
 import { CalendarDropdownProps } from "./calendar.type";
 import { ChevronDownIcon, CalendarIcon } from "@heroicons/react/16/solid";
 
-export default function CalendarDropdown({date, onChange}:CalendarDropdownProps): React.JSX.Element {
+export default function CalendarDropdown({ date, onChange }: CalendarDropdownProps): React.JSX.Element {
   const [open, setOpen] = React.useState(false);
-
   return (
     <div className="w-40">
       <div
@@ -31,10 +30,9 @@ export default function CalendarDropdown({date, onChange}:CalendarDropdownProps)
             mode="single"
             locale={es}
             selected={date}
-            onSelect={(d) => {
-              onChange(d || undefined);
-              setOpen(false); 
-            }}
+            onSelect={(date) => {
+                onChange('date'),
+                setOpen(false)}}
             className="text-sm"
           />
         </div>

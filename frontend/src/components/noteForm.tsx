@@ -4,13 +4,15 @@ import { Input } from "./ui";
 import { Calendar, Separator, Dropdown, TextArea } from "./ui";
 import { useCreateNote } from "@/hooks/useCreateNote";
 export default function NoteForm(): React.JSX.Element {
-  const {touched, errors, handleChange, handleSubmit, values, } = useCreateNote();
+  const { touched, errors, handleChange, handleSubmit, values, setFieldValue } = useCreateNote();
+  
   return (
     <div className="flex flex-col max-w-full gap-4">
+      <form className="">
       <div className="flex items-center justify-around">
         <Field className="flex flex-col gap-2">
           <Label htmlFor="date">Fecha de la Actividad:</Label>
-          <Calendar  date={values.date} onChange={handleChange}/>
+          <Calendar date={values.date} onChange={setFieldValue} />
         </Field>
         <Separator orientation="vertical" className="h-10" />
         <Field className="flex flex-col gap-2">
@@ -31,27 +33,37 @@ export default function NoteForm(): React.JSX.Element {
         ></Input>
       </Field>
       <Field>
-        <Label htmlFor="objetivo">Objetivo de la actividad:</Label>
-        <TextArea 
-          name="objetivo"
+        <Label htmlFor="object">Objetivo de la actividad:</Label>
+        <TextArea
+          name="object"
           onChange={handleChange}
           value={values.object}
           invalid={touched.object && errors.object ? true : false}
         />
       </Field>
       <Field>
-        <Label htmlFor="resultado">Resultados:</Label>
+        <Label htmlFor="results">Resultados:</Label>
         <Description className="text-sm/6 text-black/50">
           describe brevemente el resultado de las acciones
         </Description>
-        <TextArea name="resultado"></TextArea>
+        <TextArea
+          name="results"
+          onChange={handleChange}
+          value={values.results}
+          invalid={touched.results && errors.results ? true : false}
+        ></TextArea>
       </Field>
       <Field>
-        <Label htmlFor="resultado">Resultados:</Label>
+        <Label htmlFor="comments">Observaciones:</Label>
         <Description className="text-sm/6 text-black/50">
-          describe brevemente el resultado de las acciones
+          escribe las observaciones que consideres importantes OPCIONAL
         </Description>
-        <TextArea name="resultado"></TextArea>
+        <TextArea 
+        name="comments"
+        onChange={handleChange}
+        value={values.comments}
+        invalid={touched.comments && errors.comments ? true : false}
+        ></TextArea>
       </Field>
     </div>
   );
