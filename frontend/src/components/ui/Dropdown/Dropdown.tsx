@@ -20,8 +20,11 @@ interface personType {
   id: number;
   name: string | null;
 }
-
-export default function Dropdown() {
+interface DropdownProps {
+  value: personType | null;
+  onChange: (value: personType | null) => void;
+}
+export default function Dropdown({value, onChange}: DropdownProps): React.JSX.Element  {
   const [selected, setSelected] = useState<personType | null>(people[0]);
   const [query, setQuery] = useState("");
 
@@ -32,7 +35,7 @@ export default function Dropdown() {
           return person.name?.toLowerCase().includes(query.toLowerCase());
         });
   return (
-    <Combobox value={selected} onChange={(value: personType | null) => setSelected(value)}>
+    <Combobox value={value} onChange={onChange}>
       <div className="flex items-center justify-between">
         <ComboboxInput
           className="w-full rounded border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"

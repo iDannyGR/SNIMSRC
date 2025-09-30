@@ -3,7 +3,7 @@
 import * as React from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { format, set } from "date-fns";
+import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { CalendarDropdownProps } from "./calendar.type";
 import { ChevronDownIcon, CalendarIcon } from "@heroicons/react/16/solid";
@@ -30,9 +30,10 @@ export default function CalendarDropdown({ date, onChange }: CalendarDropdownPro
             mode="single"
             locale={es}
             selected={date}
-            onSelect={(date) => {
-                onChange('date'),
-                setOpen(false)}}
+            onSelect={(d) => {
+              onChange(d || undefined); // pon el nombre del campo aquí
+              setOpen(false);
+            }}
             className="text-sm"
           />
         </div>

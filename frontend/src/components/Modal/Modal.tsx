@@ -32,7 +32,7 @@ export default function Modal({
             <h3 className="text-gray-400 font-semibold text-sm text-center mb-3">{description}</h3>
             <div>{children}</div>
             <div className="flex justify-end mt-4">
-              <Button variant="primary" size="md" onClick={() => console.log("guardar")}>
+              <Button  type="submit" variant="primary" size="md">
                 Guardar
               </Button>
               <Button variant="outline-secondary" size="md" onClick={onClose}>
