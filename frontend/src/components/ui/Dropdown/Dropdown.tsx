@@ -5,6 +5,7 @@ import {
   ComboboxOptions,
   ComboboxButton
 } from "@headlessui/react";
+import { DropdownProps, personType } from "./Dropdown.types";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import clsx from "clsx";
@@ -16,14 +17,7 @@ const people = [
   { id: 4, name: "Benedict Kessler" },
   { id: 5, name: "Katelyn Rohan" }
 ];
-interface personType {
-  id: number;
-  name: string | null;
-}
-interface DropdownProps {
-  value: personType | null;
-  onChange: (value: personType | null) => void;
-}
+
 export default function Dropdown({value, onChange}: DropdownProps): React.JSX.Element  {
   const [selected, setSelected] = useState<personType | null>(people[0]);
   const [query, setQuery] = useState("");

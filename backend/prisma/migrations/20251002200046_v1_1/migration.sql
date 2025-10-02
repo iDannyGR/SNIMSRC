@@ -58,9 +58,10 @@ CREATE TABLE "Position" (
 CREATE TABLE "Note" (
     "id" TEXT NOT NULL,
     "siteId" TEXT NOT NULL,
-    "object" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "object" TEXT NOT NULL,
     "result" TEXT NOT NULL,
+    "comments" TEXT,
     "authorId" TEXT NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(3) NOT NULL,
@@ -91,6 +92,9 @@ CREATE UNIQUE INDEX "Area_name_key" ON "Area"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Position_name_key" ON "Position"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Site_name_key" ON "Site"("name");
 
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_positionId_fkey" FOREIGN KEY ("positionId") REFERENCES "Position"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
