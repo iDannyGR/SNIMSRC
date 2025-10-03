@@ -18,7 +18,7 @@ const people = [
   { id: 5, name: "Katelyn Rohan" }
 ];
 
-export default function Dropdown({value, onChange}: DropdownProps): React.JSX.Element  {
+export default function Dropdown({ value, onChange }: DropdownProps): React.JSX.Element {
   const [selected, setSelected] = useState<personType | null>(people[0]);
   const [query, setQuery] = useState("");
 
